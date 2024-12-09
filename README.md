@@ -1,6 +1,6 @@
 # Java Practice
 
-Here I document what I learn from online resources to better understand java.
+Here I document what I learnt from online resources to better understand java.
 
 ## The anatomy of java
 
@@ -76,16 +76,16 @@ init age = 25, temperature = 20;
 int myAge = age;
 ```
 
-## Primitive types
+## Primitive types - Default value
 
-1. Byte (1 byte, range -128 to 127)
-2. short (2 byte, range -32k to 32k)
-3. int (4 byte, range -2b to 2b)
-4. long (8 byte, range - to )
-5. float 4 bytes
-6. double 8 bytes
-7. char 2 bytes
-8. boolean 1 bit
+1. Byte (8 bits = 1 byte, range -128 to 127) => 0
+2. short (2 byte, range -32k to 32k) => 0
+3. int (4 byte, range -2b to 2b) => 0
+4. long (8 byte, range - to ) => 0L
+5. float (4 bytes) => 0.0f
+6. double (8 bytes) => 0.0d
+7. char (2 bytes->16-bit, range 0 to 65k) => \u0000
+8. boolean (1 bit) => false
 
 ## reference types
 
@@ -107,8 +107,10 @@ System.out.println("message = " + message.replace("!!", "👋"));
 
 ## Arrays
 
+Each item in an array is called an element, and each element is accessed by its numerical index.
+
 ```java
-int[] numbers = new int[5];
+int[] numbers = new int[5]; //declared an array of int and allocated a memory for 5 integers.
 numbers[0] = 4;
 numbers[1] = 6;
 numbers[2] = 3;
@@ -132,6 +134,58 @@ System.out.println(Arrays.deepToString(numbers2));
 int[][] numbers3 = {{3, 2, 1}, {0, 4, 9}};
 System.out.println(Arrays.deepToString(numbers3));
 ```
+
+## Copying Arrays
+
+Using the built in System.arraycopy(), you can easily copy an array.
+```java
+public static void arraycopy(Object src, int srcPos,
+                             Object dest, int destPos, int length)
+```
+
+```java
+class copyArray {
+  public static void main() {
+    String[] copyFrom = {"me", "you", "learning java"};
+    String[] copyTo = new String[1];
+
+    System.arraycopy(copyFrom, 2, copyTo, 0, 1);
+    System.out.println(copyTo[0]); // outputs "learning java"
+    String[] copyTo2 = java.util.Arrays.copyOfRange(copyFrom, 0, 2);
+    System.out.println(java.util.Arrays.toString(copyTo2)); // [me, you]
+  }
+}
+```
+
+## Some array manipulation methods
+
+- binarySearch() - returns the index of the search key
+- equal() - checks arrays equality
+- toString() - converts to string
+- fill() - fills an array at the specified index
+- sort() - sort array in ascending order 
+- parallelSort() - sort large arrays and faster
+- stream() - create a stream that uses an array as its source
+
+## Using the var keyword
+
+You can use the var keyword to declare a variable and allow the compiler to decide the type of the variable. This comes in handy to reduce redundant type specification:
+
+```java
+// From
+String message = "Hello world!";
+Path path = Path.of("debug.log");
+InputStream stream = Files.newInputStream(path);
+// To
+var message = "Hello world!";
+var path = Path.of("debug.log");
+var stream = Files.newInputStream(path);
+```
+## Restrictions on using the var keyword
+
+- Only used in local variables declared in methods, constructors and initializer blocks.
+- Cannot be used for fields, methods and constructor parameters
+- The variable must have an initializer
 
 ## Constant
 
@@ -234,6 +288,30 @@ public class Main {
     System.out.println(isWarm);
   }
 }
+```
+
+## Type comparison
+`instanceof` operator is used to compare the types of objects
+
+```java
+class InstanceofDemo {
+  public static void main(String[] args) {
+
+    Parent obj1 = new Parent();
+    Parent obj2 = new Child();
+
+    System.out.println("obj1 instanceof Parent: "
+      + (obj1 instanceof Parent)); // true
+    System.out.println("obj1 instanceof Child: "
+      + (obj1 instanceof Child)); // false
+    System.out.println("obj1 instanceof MyInterface: "
+      + (obj1 instanceof MyInterface)); // false
+  }
+}
+
+class Parent {}
+class Child extends Parent implements MyInterface {}
+interface MyInterface {}
 ```
 
 ## Logical Operators
@@ -379,3 +457,7 @@ String[] fruits = {"Apple", "Banana", "Orange", "Pear", "Grape"};
 for (String fruit : fruits)
   System.out.println(fruit);
 ```
+
+## The break, continue, and return statements
+
+Just as seen in the above code blocks, the `break` statement is used to prevent further checks in loops, while `continue` resumes the checks in the loop. The `return` is used to stop a function from further executing. 

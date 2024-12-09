@@ -22,5 +22,14 @@ public class Arrays  {
 
     int[][] numbers3 = {{3, 2, 1}, {0, 4, 9}};
     System.out.println(java.util.Arrays.deepToString(numbers3));
+
+    // Copy array
+    String[] copyFrom = {"me", "you", "learning java"};
+    String[] copyTo = new String[1];
+
+    System.arraycopy(copyFrom, 2, copyTo, 0, 1);
+    System.out.println(copyTo[0]);
+    String[] copyTo2 = java.util.Arrays.copyOfRange(copyFrom, 0, 2);
+    System.out.println(java.util.Arrays.toString(copyTo2));
   }
 }
