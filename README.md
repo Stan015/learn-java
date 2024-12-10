@@ -460,4 +460,189 @@ for (String fruit : fruits)
 
 ## The break, continue, and return statements
 
-Just as seen in the above code blocks, the `break` statement is used to prevent further checks in loops, while `continue` resumes the checks in the loop. The `return` is used to stop a function from further executing. 
+Just as seen in the above code blocks, the `break` statement is used to prevent further checks in loops, while `continue` resumes the checks in the loop. The `return` is used to stop a function from further executing.
+
+## Exception handling in Java
+This is the ability to handle runtime errors.
+
+Types of Java Exceptions
+- checked exception (IOException, SQLException, ParseException, and ClassNotFoundException)
+- unchecked exception (NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException, and IllegalArgumentException)
+- error (OutOfMemoryError, StackOverflowError, and NoClassDefFoundError)
+
+### Java Exception Keywords
+
+try, catch, finally, throw, throws
+
+```java
+try {  
+  // Code that may throw an exception  
+} catch (Exception e) {  
+  // Exception handling code  
+} finally {  
+  // Cleanup code  
+}  
+```
+
+## Date in Java
+
+```java
+public class DateTime {
+  public static void main(String[] args){
+
+    LocalDate today = LocalDate.now();
+    System.out.println("Today : " + today);
+
+    LocalTime thisTime = LocalTime.now();
+    System.out.println("This time : " + thisTime);
+
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    System.out.println("Current Time : " + currentDateTime);
+
+    LocalDate someDay = LocalDate.of(2020, Month.JUNE, 12);
+    System.out.println("Someday : " + someDay);
+
+    LocalTime someTime = LocalTime.of(23, 53);
+    System.out.println("Sometime : " + someTime);
+
+    LocalDateTime otherDateTime = LocalDateTime.of(2021, Month.MARCH, 4, 10,51,44);
+    System.out.println("Other Date Time : " + otherDateTime);
+
+  }
+}
+```
+
+## Java’s File APIs
+
+Java has two file APIs.
+
+- The original `java.io.File` API, available since Java 1.0 (1996).
+- The newer `java.nio.file.Path` API, available since Java 1.7 (2011).
+
+Firstly, you would need to reference a file path:
+
+```java
+public static void main(String[] args) throws URISyntaxException {
+
+  // Java11+  : Path.of()
+
+  Path path = Path.of("/Desktop/practice-folder/java-practice/hello-java-world/README.md");
+  System.out.println(path);
+
+  path = Path.of("/Desktop/practice-folder/java-practice/hello-java-world/README.md");
+  System.out.println(path);
+
+  path = Path.of("Desktop" , "practice-folder", "java-practice", "hello-java-world", "README.md");
+  System.out.println(path);
+
+  path = Path.of("Desktop" , "practice-folder", "java-practice", "hello-java-world").resolve("README.md"); // resolve == getChild()
+  System.out.println(path);
+
+  path = Path.of(new URI("file:///Desktop/practice-folder/java-practice/hello-java-world/README.md"));
+  System.out.println(path);
+
+  // Java < 11 equivalent: Paths.get()
+  path = Paths.get("/Desktop/practice-folder/java-practice/hello-java-world/README.md");
+  System.out.println(path);
+
+  // etc...
+}
+```
+
+All the above read the file path correctly, outputting same result.
+
+### Common File Operations
+
+1. Check if file exists
+```java
+Path path = Path.of("/Desktop/practice-folder/java-practice/hello-java-world/README.md");
+System.out.println(path);
+
+boolean fileExists = path.toFile().exists();
+System.out.println(fileExists);
+//or
+boolean fileExists2 = Files.exists(path);
+System.out.println(fileExists2);
+```
+
+2. Check last date modified
+```java
+Path path = Path.of("/Desktop/practice-folder/java-practice/hello-java-world/README.md");
+FileTime lastModifiedTime = Files.getLastModifiedTime(path);
+System.out.println("lastModifiedTime = " + lastModifiedTime);
+```
+3. How to compare files (Java12+): `File.mismatch(path, Paths.get("/path2"))`
+4. Get owner of file: `Files.getOwner(path)`
+5. Create Temporary file: `Files.createTempFile(path.getParent(), "somePrefixOrNull", ".jpg");`
+6. Create Directory: `Path newDirectory = Files.createDirectories(path.getParent().resolve("some/new/dir"));`
+7. Create file: `Files.createFile(newDirectory.resolve("emptyFile.txt"));`
+
+
+## Data Structure
+
+We can classify Data Structures into two categories:
+
+- Primitive Data Structure
+- Non-Primitive Data Structure
+
+The Primitive Data Structure includes: Integer, Float, Character, Boolean.
+While the Non-Primitive Data Structure are further divided into Linear Data Structure and Non-Linear Data Structure.
+<br>
+- Linear Data Structure include: Array, Queue, Stack, Linked-list.  Array is a perfect example of a Static Data Structure, while, Queue, Stack and Linked-List are Dynamic Data Structures.
+- Non-linear data structure include: Graph, Tree, Hash Table
+
+### DS Algorithms
+
+An Algorithm is a set of rules or procedure through which a task or problem is solved by the computer following the specified rules.
+
+#### Algorithm characteristics
+- Input
+- Output
+- Not ambiguous
+- Language dependent free
+- Finiteness
+- Effectiveness
+
+#### Factors of an algorithm
+
+- Modularity
+- Correctness
+- Maintainability
+- User-friendly
+- Simplicity
+- Functionality
+- Extensibility
+- Robustness
+
+#### Approaches of Algorithm
+
+- Brute Force Algorithm
+- Divide and Conquer
+- Greedy Algorithm
+- Dynamic Programming
+- Branch and Bound algorithm
+- Randomized algorithm
+- Backtracking
+
+#### Major categories of algorithms
+
+- Sort: Algorithm developed for sorting the items in a certain order.
+- Search: Algorithm developed for searching the items inside a data structure.
+- Delete: Algorithm developed for deleting the existing element from the data structure.
+- Insert: Algorithm developed for inserting an item inside a data structure.
+- Update: Algorithm developed for updating the existing element inside a data structure.
+
+#### Algorithm complexity
+
+The complexity of an algorithm is calculated on two bases;
+1. Time Complexity: This is the time it takes to solve a problem with an algorithm. Time Complexity is denoted by the `Big O Notation`
+2. Space Complexity: On the other hand, is the amount of memory required to complete solving a problem with an algorithm. This is also expressed with `Big O Notation`.
+
+#### Types of Algorithms
+
+- Search Algorithm: Linear search and Binary Search
+- Sort Algorithm
+
+
+# References
+- [Java's File APIs](https://www.marcobehler.com/guides/java-files)
