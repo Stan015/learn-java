@@ -643,6 +643,10 @@ The complexity of an algorithm is calculated on two bases;
 - Search Algorithm: Linear search and Binary Search
 - Sort Algorithm
 
+## Advanced java
+
+- Read on from AdvancedJava .md file: [Advanced Java]("/AdvancedJava.md")
+
 
 # References
 - [Java's File APIs](https://www.marcobehler.com/guides/java-files)
