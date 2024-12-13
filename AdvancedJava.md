@@ -171,11 +171,12 @@ for (int i = 0; i < n; i++) {
 }
 ```
 
-Note: the output of concurrently doesn't occur in any order. Threads never run in sequence, they run in parallel. They run in no order.
+Note: the output of concurrency doesn't occur in any order. Threads never run in sequence, they run in parallel. They run in no order.
 
 ## Synchronization in Java
 
-When we execute threads, they do not run in sequence. This is not a problem in the thread example above, but it becomes a problem when for instance two threads are trying to access a value in an object at the same time. This is where java in providing _Synchronization_ which is built around an internal entity known as _intrinsic lock or monitor lock_.
+When we execute threads, they do not run in sequence. This is not a problem in the thread example above, 
+but it becomes a problem when for instance two threads are trying to access an object at the same time. This is where java in providing _Synchronization_ which is built around an internal entity known as _intrinsic lock or monitor lock_.
 
 ```java
 public class SynchronizedMathUtils {
@@ -254,6 +255,94 @@ public class Main {
 ```
 
 Note: Threads should be used with caution. It can cause performance issue in large applications when you are trying to run expensive logics at the same time. This is why care should be taken in consideration when creating threads.
+
+## Autoboxing and Unboxing
+
+_Autoboxing_ is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. Converting `int` to `integer` is an example.
+If the conversion goes in reverse, then it is called _Unboxing_.
+
+```java
+public static void main(String[] args) {
+  int i = 48;
+  
+  // Autobox
+  Integer iObj = Integer.valueOf(i);
+  System.out.println(iObj);
+  
+  // auto-unbox
+  int i1 = iObj.intValue();
+  System.out.println(i1);
+}
+```
+
+## Input/Output (I/O) Streams
+
+The basic idea is that the program takes input from some external source (e.g, command line, file, etc). It involves getting values from an input sources and sends to output destination in a process called _stream_.
+
+- Input stream reads data from a source
+- Output stream writes data to a destination
+
+Types of Streams:
+- Byte Streams - if you don't know the kind of data you will be streaming, or if the data you will be streaming will be in bytes like reading image files, use Byte Stream. The below code reads the file byte by byte and writes to the destinations file.
+```java
+public class ByteStream {
+  public static void main(String[] args) throws IOException {
+    FileInputStream inStream = null;
+    FileOutputStream outStream = null;
+
+    try {
+      inStream = new FileInputStream("/source.md");
+      outStream = new FileOutputStream("/destination.md");
+
+      // reads a byte at a time, if it reaches the end of the file, it returns -1
+      int content;
+      while ((content = inStream.read()) != -1) {
+        outStream.write((byte) content);
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("Error: " + e.getMessage());
+    } finally {
+      if (inStream != null) {
+        inStream.close(); // make sure to close
+      }
+      if (outStream != null) {
+        outStream.close(); // make sure to close
+      }
+    }
+  }
+}
+```
+- Character Streams - used to stream character by character using the `FileReader` and `FileWriter` APIs instead.
+```java
+public class CharacterStream {
+  public static void main(String[] args) throws IOException {
+    FileReader readerStream = null;
+    FileWriter writerStream = null;
+
+    try {
+      readerStream = new FileReader("input.txt");
+      writerStream = new FileWriter("output.txt");
+
+      // Read source file and write content to destination file character by character
+      int content;
+      while ((content = readerStream.read()) != -1) {
+        writerStream.append((char) content);
+      }
+    } catch (IOException e) {
+      System.out.println("Error reading file" + e.getMessage());
+    } finally {
+      if (readerStream != null) {
+        readerStream.close();
+      }
+      if (writerStream != null) {
+        writerStream.close();
+      }
+    }
+  }
+}
+```
+
+## JDBC (Java Database Connections)
 
 
 # References

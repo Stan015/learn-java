@@ -34,8 +34,19 @@ public class Main {
 
       Thread1 thread1 = new Thread1(obj);
       Thread thread2 = new Thread(new Thread2(obj));
-      thread1.start();
-      thread2.start();
+//      thread1.start();
+//      thread2.start();
 //    }
+
+    // Autoboxing and Unboxing
+    int i = 48;
+
+    // Autobox
+    Integer iObj = Integer.valueOf(i);
+    System.out.println(iObj);
+
+    // auto-unbox
+    int i1 = iObj.intValue();
+    System.out.println(i1);
   }
 }
