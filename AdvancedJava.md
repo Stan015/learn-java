@@ -343,7 +343,52 @@ public class CharacterStream {
 ```
 
 ## JDBC (Java Database Connections)
+The JDBC API is a very helper class in java that helps with connecting to different databases with technically the `DriverManager` and `Connection` syntax.
+This bridges the gap of having to worry about how every database allows for its connection. 
 
+So you simply have to:
+- choose your database (MySQL, PostgreSQL, Oracle, etc) 
+- download the db installer
+- set it up and get the connection url
+- download the JDBC driver for that database. This will download a `.jar` file which you can add to your java program's Classpath.
+- write your java program to connect to the db and perform your CRUD to the db as in the example below:
+```java
+public class PostgresqlJDBC {
+  public static void main(String[] args) throws SQLException {
+    // Creating the connection
+    String url = "jdbc:postgresql://localhost:5432/testdb";
+    Connection conn = null;
+
+    // data to send to db; which would in most cases come from user input or elsewhere
+    int id = 2;
+    String name = "John Smith";
+    String email = "john.smith@gmail.com";
+    int age = 26;
+
+    // write the sql statement to update db
+    String sql = "insert into students(id, name, age, email)" + "values(" + id + ",'" + name + "'," + age + ",'" + email + "')";
+
+    try {
+      conn = DriverManager.getConnection(url, "stan015", "testpassword");
+
+      Statement stmt = conn.createStatement();
+      int count = stmt.executeUpdate(sql);
+      if (count == 1) {
+        System.out.println("Inserted successfully: " + sql);
+      } else {
+        System.out.println("Insertion failed");
+      }
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+    } finally {
+      if (conn != null) {
+        conn.close();
+      }
+    }
+  }
+}
+```
+- Always make sure to `close()` the connection after connecting to db!
 
 # References
 
