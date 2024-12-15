@@ -342,7 +342,7 @@ public class CharacterStream {
 }
 ```
 
-## JDBC (Java Database Connections)
+## JDBC (Java Database Connectivity)
 The JDBC API is a very helper class in java that helps with connecting to different databases with technically the `DriverManager` and `Connection` syntax.
 This bridges the gap of having to worry about how every database allows for its connection. 
 
@@ -389,6 +389,108 @@ public class PostgresqlJDBC {
 }
 ```
 - Always make sure to `close()` the connection after connecting to db!
+
+## Generics in Java
+Generic enables types (classes and interfaces) to be parameters when defining classes, interfaces and methods. Java is a strongly typed language. Generics aids to reuse the same code with different inputs with strong type checks.
+
+Generics is useful for:
+- elimination of casts
+```java
+//casting
+List list = new ArrayList();
+list.add("hello");
+String s = (String) list.get(0);//cast
+
+//no casting
+List<String> list = new ArrayList<String>();
+list.add("hello");
+String s = list.get(0); //no cast
+```
+- Stronger type checks at compile time
+- Enabling programmers to implement generic algorithms
+
+Example of Generics:
+```java
+public class Generics<T> {
+  T object;
+
+  Generics(T object) {
+    this.object = object;
+  }
+
+  public T getObject() {
+    return this.object;
+  }
+
+  public static void main(String[] args) {
+    Generics<Integer> obj3 = new Generics<Integer>(29);
+    System.out.println(obj3.getObject());
+  }
+}
+```
+
+```java
+class DualGenerics<T, U, V> {
+  T object;
+  U object2;
+  V object3;
+
+  DualGenerics(T object, U object2, V object3) {
+    this.object = object;
+    this.object2 = object2;
+    this.object3 = object3;
+  }
+
+  public void display() {
+    System.out.println(object + " " + object2 + " " + object3);
+  }
+
+  public static void main(String[] args) {
+    DualGenerics<Integer, String, Character> obj = new DualGenerics<Integer, String, Character>(29, "Test", '&');
+    obj.display();
+  }
+}
+```
+From the examples above, you would notice that the generic class holds a placeholder for the types of the obj which should be provided
+when calling the class.
+
+## String Handling in Java
+The `String` class/API has a very versatile methods that are super helpful. Example of the methods include:
+- charAt(int index)
+- codePoints()
+- concat(String str)
+- compareToIgnoreCase(String str)
+- contentEqual()
+- length()
+- format()
+- etc
+
+`String` class is super helpful and worth checking out to know all the methods you can use to play around a string.
+_strings are immutable in nature_.
+
+```java
+String result = String.format("The name of the student is %s, and the age is %d", "Kelvin", 32);
+System.out.println(result); // output: The name of the student is Kelvin, and the age is 32
+```
+
+## Java.lang package
+
+This package provides classes that are fundamental to the design of a java program. You don't need to import this package at the top of your application as it is already an essential package provided to us when we create a java program.
+
+It has interfaces and classes which are worth checking out to see what `java.lang` package is offering.
+
+## Java.util package
+This package contains collections framework, some internationalization support classes, a service loader, properties, random number generation, string parsing and scanning classes, base64 encoding and decoding, a bit array, and lots more utility classes.
+
+You would need to explicitly import this package to get it work.
+
+## Networking in Java
+Java Networking is a concept of connecting two or more computing devices together so that we can share resources.
+
+The `java.net` package supports two protocols;
+
+- TCP: Transmission Control Protocol provides reliable communication between the sender and receiver. TCP is used along with the Internet Protocol referred as IP.
+- UDP: User Datagram Protocol provides a connection-less protocol service by allowing packet of data to be transferred along two or more nodes
 
 # References
 
