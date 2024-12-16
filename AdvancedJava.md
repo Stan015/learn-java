@@ -492,6 +492,75 @@ The `java.net` package supports two protocols;
 - TCP: Transmission Control Protocol provides reliable communication between the sender and receiver. TCP is used along with the Internet Protocol referred as IP.
 - UDP: User Datagram Protocol provides a connection-less protocol service by allowing packet of data to be transferred along two or more nodes
 
+There are lots of helper classes, interfaces, exceptions, enums this package provides which is worth checking out.
+
+```java
+public class NetworkingDemo {
+  public static void main(String[] args) throws UnknownHostException {
+    String url = "www.stanleyazi.me";
+
+    InetAddress address = InetAddress.getByName(url);
+    System.out.println("Address: " + Arrays.toString(address.getAddress()));
+
+    // getHostAddress() method
+    System.out.println("Host address: " + address.getHostAddress());
+
+    // getHostName() method
+    System.out.println("Host name: " + address.getHostName());
+
+    // isAnyLocalAddress() method
+    System.out.println("isAnyLocalAddress: " + address.isAnyLocalAddress());
+
+    // isLinkLocalAddress() method
+    System.out.println("isLinkLocalAddress: " + address.isLinkLocalAddress());
+
+    // isLoopbackAddress() method
+    System.out.println("isLoopbackAddress: " + address.isLoopbackAddress());
+
+    // isSiteLocalAddress() method
+    System.out.println("isSiteLocalAddress: " + address.isSiteLocalAddress());
+  }
+}
+```
+
+## Image handling in Java
+Java does provide support for image handling using two classes:
+
+- `java.awt.Image` class and
+- `java.awt.image.BufferedImage` class which extends the Image class
+
+You can easily read provided image file and also write that exact image to a destination file in java as seen in the below example: 
+```java
+  private static BufferedImage readFromFile(int width, int height, BufferedImage image) {
+    try {
+      File sampleImageFile = new File("/sampleImage.jpg");
+
+      image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+      // Reading input file
+      image = ImageIO.read(sampleImageFile);
+
+      System.out.println("Reading complete." + image);
+    } catch (IOException e) {
+      System.err.println("Error" + e.getMessage());;
+    }
+    return image;
+  }
+  
+  private static void writeToFile(BufferedImage image) {
+    try {
+      File output = new File("/sampleImageOut.jpg");
+
+      ImageIO.write(image, "jpg", output );
+
+      System.out.println("Writing complete.");
+    } catch (IOException e) {
+      System.err.println("Error" + e.getMessage());
+    }
+  }
+}
+```
+
 # References
 
 - [Advanced Java](https://www.youtube.com/watch?v=Ae-r8hsbPUo)
