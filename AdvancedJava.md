@@ -173,6 +173,87 @@ for (int i = 0; i < n; i++) {
 
 Note: the output of concurrency doesn't occur in any order. Threads never run in sequence, they run in parallel. They run in no order.
 
+The Concurrency utilities package provide a powerful, extensible framework of high-performance threading utilities such as thread pools and blocking queues. It provides low-level primitives for advanced concurrent programming.
+
+- `java.util.concurrent`
+- `java.util.concurrent.locks`
+- `java.util.concurrent.atomic`
+
+### Concurrency Executors
+Executors are simple standardized interfaces for defining custom thread-like subsystems, including thread pools, asynchronous I/O, and lightweight task frameworks.
+- `ExecutorService` provides a more complete asynchronous task execution framework, managing queues and scheduling tasks, and allowing controlled shutdown.
+- `ScheduledExecutorService` subinterface and associated interfaces add support for delayed and periodic task execution.
+
+```java
+public class ConcurrencyExecutor {
+  public static void main(String[] args) {
+    executorInvoke();
+    executorServiceInvoke();
+  }
+
+  private static void executorInvoke() {
+    Executor executor = new Caller();
+    executor.execute(() -> {
+      System.out.println("Executor example");
+    });
+  }
+
+  private static void executorServiceInvoke() {
+    try {
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
+      executorService.submit(() -> {
+        System.out.println("Executor service example");
+      });
+    } catch (Exception e) {
+      System.err.println(e.getMessage());
+    }
+  }
+}
+```
+```java
+public class Caller implements Executor {
+  @Override
+  public void execute(Runnable command) {
+    command.run();
+  }
+}
+```
+The above code blocks show how we can use the `Executor` class to launch a new task, and the `ExecutorService` is used to initiate an asynchronous logic which is better handled with the `Future` class below:
+
+### Future class
+a Future returns the result of a function, allows determination of whether execution has completed, and provides a means to cancel execution. It is basically used in hand with the `ExecutorService` to handle asynchronous tasks.
+
+```java
+public class ConcurrencyFutureDemo {
+  public static void main(String[] args) {
+    ExecutorService executorService = Executors.newSingleThreadExecutor();
+    Future<String> future = executorService.submit(() -> {
+      Thread.sleep(3000);
+      return "Completed";
+    });
+
+    try {
+      while (!future.isDone()) {
+        System.out.println("Task still in progress...wait");
+        Thread.sleep(500);
+      }
+      System.out.println("Task completed");
+      String result = future.get(3000, TimeUnit.MILLISECONDS);
+      System.out.println(result);
+
+      executorService.shutdown();
+    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+      future.cancel(true);
+      future.isDone();
+      future.isCancelled();
+      System.err.println("Task interrupted");
+    }
+  }
+}
+```
+
+This way, we can handle in asynchronous logic or function in java using `ExecutorService` class, and the `Future` class which monitors the asynchronous running initiated with the `ExecutorService` class. 
+
 ## Synchronization in Java
 
 When we execute threads, they do not run in sequence. This is not a problem in the thread example above, 
