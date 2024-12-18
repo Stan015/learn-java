@@ -642,6 +642,64 @@ You can easily read provided image file and also write that exact image to a des
 }
 ```
 
+## Regular Expressions in Java (Regex)
+
+The basic idea behind Regex is a way to describe a set of strings based on common characteristics shared by each string in the set.
+
+Java provides the `java.util.regex` package which helps to implement regular expressions.
+
+The `java.util.regex` package primarily consists of three classes: 
+- `Pattern`: A Pattern object is a compiled representation of a regular expression.
+- `Matcher`: A Matcher object is the engine that interprets the pattern and performs match operations against an input string.
+- `PatternSyntaxException`: A PatternSyntaxException object is an unchecked exception that indicates a syntax error in a regular expression pattern.
+
+```java
+public class Regex {
+  public static  void main(String[] args) {
+    String regex = "[a-zA-Z0-9_-]+";
+    Pattern pattern = Pattern.compile(regex);
+
+    Matcher matcher = pattern.matcher("ThisTest123");
+    boolean found = matcher.find();
+    if (found) {
+      System.out.println("Match found: " + matcher.group());
+    } else {
+      System.out.println("Match not found: " + matcher.group());
+    }
+  }
+}
+```
+
+## NIO in java
+`NIO` stands for _New Input/Out_, which is an API that defines `Buffers` (containers for data), and other structures such as `Charsets`, `Channels` and `Selectors` channels. 
+
+The `NIO` package is a new improved version of the old `IO` package which allows reading or writing of files without blocking...this aid multithreading and non-blocking in threads more efficiently.
+
+Both `NIO` package and `IO` package can be used together.
+
+```java
+public class NIODemo {
+  public static void main(String[] args) throws IOException {
+    // read a file
+    FileInputStream fis = new FileInputStream("srcTest.md");
+    FileChannel readChannel = fis.getChannel();
+    ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+    int result = readChannel.read(readBuffer);
+    System.out.println("File read successfully: " + result);
+
+    // write to a file
+    FileOutputStream fout = new FileOutputStream("nioDest.md");
+    FileChannel writeChannel = fout.getChannel();
+    ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
+    String message = "Hello World tesing NIO write stream";
+    writeBuffer.put(message.getBytes());
+    writeBuffer.flip();
+    writeChannel.write(writeBuffer);
+    System.out.println(message);
+  }
+}
+```
+
 # References
 
 - [Advanced Java](https://www.youtube.com/watch?v=Ae-r8hsbPUo)
