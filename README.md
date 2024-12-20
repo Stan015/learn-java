@@ -24,7 +24,7 @@ class Main {
   }
 }
 ```
-- The classes and methods should have access modifier like public, private, default, protected, etc. 
+- The classes and methods should have access modifier like public, private, default, protected, etc.
 ```java
 public class Main {
   public void main() {
@@ -43,7 +43,7 @@ source code ( *.java) to Java Compiler to Byte Code ( *.class)
 javac Main.java
 
 // ls to list Main.java file and the byte code file, Main.class
-ls
+  ls
 
 // cd to src and run the file to output the compiled result
 java [packageName].[FileName]
@@ -69,8 +69,8 @@ type nameOrIdentifier = value;
 int age = 25;
 age = 30; //reassignment
 
-// you can declare multiple variables of the same type in a single line (not recommended)
-init age = 25, temperature = 20;
+  // you can declare multiple variables of the same type in a single line (not recommended)
+  init age = 25, temperature = 20;
 
 // copy the value of another variable
 int myAge = age;
@@ -95,14 +95,14 @@ int myAge = age;
 4. stacks
 5. queues etc
 
-Primitive variables are completely independent on each other because they are stored in different memory location. 
+Primitive variables are completely independent on each other because they are stored in different memory location.
 Reference variable are dependent on each other.
 
 ```java
 // String message = new String("Hello World") - redundant
 String message = "Hello World" + "!!";
 System.out.println("message = " + message.length());
-System.out.println("message = " + message.replace("!!", "👋"));
+  System.out.println("message = " + message.replace("!!", "👋"));
 ```
 
 ## Arrays
@@ -114,14 +114,14 @@ int[] numbers = new int[5]; //declared an array of int and allocated a memory fo
 numbers[0] = 4;
 numbers[1] = 6;
 numbers[2] = 3;
-System.out.println(numbers); // output: [I@34a245ab
+  System.out.println(numbers); // output: [I@34a245ab
 System.out.println(Arrays.toString(numbers)); // output: [4, 6, 3, 0, 0]
 ```
 ```java
 //better array declaration
 int[] newNumbers = {3, 53, 2, 5, 0};
 System.out.println(Arrays.toString(newNumbers));
-System.out.println(newNumbers.length);
+  System.out.println(newNumbers.length);
 ```
 
 ```java
@@ -129,7 +129,7 @@ System.out.println(newNumbers.length);
 int[][] numbers2 = new int[2][3];
 numbers2[0][0] = 1;
 numbers2[0][1] = 2;
-System.out.println(Arrays.deepToString(numbers2));
+  System.out.println(Arrays.deepToString(numbers2));
 
 int[][] numbers3 = {{3, 2, 1}, {0, 4, 9}};
 System.out.println(Arrays.deepToString(numbers3));
@@ -163,7 +163,7 @@ class copyArray {
 - equal() - checks arrays equality
 - toString() - converts to string
 - fill() - fills an array at the specified index
-- sort() - sort array in ascending order 
+- sort() - sort array in ascending order
 - parallelSort() - sort large arrays and faster
 - stream() - create a stream that uses an array as its source
 
@@ -198,26 +198,26 @@ final float PI = 3.142F; // final
 public static void arithmeticExpression() {
   int a = 23 * 3;
   System.out.println("a = " + a);
-  
+
   double result = (double)10 / (double) 3;
   System.out.println(result);
-  
+
   int x = 1;
   x++;
   int y = ++x;
   y += 4;
   System.out.println(x);
   System.out.println(y);
-  
+
   int z = (3 + 4) * 9;
   System.out.println(z);
-  
+
   // implicit casting
   // byte > short > int > long > float > double
   short s = 1;
   int d = s + 2;
   System.out.println(d);
-  
+
   // explicit casting.
   double h = 4.9;
   int k = (int)h + 4;
@@ -330,7 +330,7 @@ public class Main {
 
 ## Conditional Statements
 
-### The `if statement` and `ternary operator`: 
+### The `if statement` and `ternary operator`:
 
 ```java
 public class ConditionalStatements {
@@ -411,8 +411,8 @@ Similar to `for` loop, but with different syntax. The code block will run as lon
 int i = 0;
 while (i < 3) {
   System.out.println("Hello Java Loop World");
-  i++;
-}
+i++;
+  }
 ```
 `While` is preferred when we don't know how many times to loop, orderwise use for loop.
 ```java
@@ -420,7 +420,7 @@ Scanner scanner2 = new Scanner(System.in);
 String input = "";
 while (!input.equals("exit")) {
   System.out.print("Input: ");
-  input = scanner2.next().toLowerCase();
+input = scanner2.next().toLowerCase();
   System.out.println(input);
 }
 ```
@@ -435,14 +435,14 @@ String input3 = "";
 
 do {
   System.out.print("Input: ");
-  input3 = scanner3.next().toLowerCase();
+input3 = scanner3.next().toLowerCase();
   
   if (input3.equals("pass"))
-    continue;
-  
+  continue;
+
   if (input3.equals("exit"))
-    break;
-  
+  break;
+
   System.out.println(input3);
 } while (true);
 ```
@@ -475,13 +475,13 @@ Types of Java Exceptions
 try, catch, finally, throw, throws
 
 ```java
-try {  
+try {
   // Code that may throw an exception  
-} catch (Exception e) {  
+  } catch (Exception e) {
   // Exception handling code  
-} finally {  
+  } finally {
   // Cleanup code  
-}  
+  }  
 ```
 
 ## Date in Java
@@ -645,7 +645,7 @@ The complexity of an algorithm is calculated on two bases;
 
 ## Advanced java
 
-- Read on from AdvancedJava .md file: [Advanced Java]("/AdvancedJava.md")
+- Read on from AdvancedJava .md file: [Advanced Java](AdvancedJava.md)
 
 
 # References

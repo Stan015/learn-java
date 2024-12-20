@@ -9,7 +9,7 @@ An `enum` is a language construct that is used to define type-safe enumerations 
 ```java
 // define enum
 public enum Day {
-  SUNDAY, MONDAY, TUESDAY, WEDNESDAY, 
+  SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
   THURSDAY, FRIDAY, SATURDAY
 }
 ```
@@ -53,7 +53,7 @@ You can use annotations to provide:
 - Compile-time and deployment-time processing
 - Runtime processing
 
-Annotation in Java starts with the "@" and then the annotation  name. for example: 
+Annotation in Java starts with the "@" and then the annotation  name. for example:
 - `@Override`: Override the initial implementation of a code
 - `@Author()`: Gives details about an author
 - `@SuppressWarnings()`: suppresses warning (not recommended for use unless there is need to do so)
@@ -81,12 +81,12 @@ import java.io.Serializable;
 class MyClass implements Serializable {
   // give is a serialVersionUID
   private static final long serialVersionUID = 1L;
-  
+
   // your code
 }
 ```
 - To serialize the MyClass object, get the location you are sending the serialized form to, use `.writeObject(MyClassInstance)`.
-- To deserialize the MyClass object from where the serialized form is sent, use `.readObject()`. 
+- To deserialize the MyClass object from where the serialized form is sent, use `.readObject()`.
 
 ```java
 import java.io.FileInputStream;
@@ -115,7 +115,7 @@ public class UsingSerialization {
 }
 ```
 
-There are cases where you may not want a variable to be serialized in a serializable class/object. In this case, prefix the `transient` variable. 
+There are cases where you may not want a variable to be serialized in a serializable class/object. In this case, prefix the `transient` variable.
 ```java
 transient int x;
 ```
@@ -123,7 +123,7 @@ transient int x;
 ## Concurrency and Threads in Java
 
 Concurrency is the ability to run multiple programs/tasks at once. <br>
-To apply concurrency, we use Processes and Threads. These are the two basic units of execution in concurrency programming. 
+To apply concurrency, we use Processes and Threads. These are the two basic units of execution in concurrency programming.
 In Java programming, concurrency mostly deals with Threads.
 
 To define a thread, create your thread class and extend to the built-in `Thread` class to inherit the methods you want to override and specify your own logics.
@@ -163,10 +163,10 @@ And finally you can call the threads to run concurrently as in this example:
 // Concurrency and Threads
 int n = 10;
 for (int i = 0; i < n; i++) {
-  Thread1 thread1 = new Thread1();
+Thread1 thread1 = new Thread1();
   thread1.start();
 
-  Thread thread2 = new Thread(new Thread2());
+Thread thread2 = new Thread(new Thread2());
   thread2.start();
 }
 ```
@@ -252,11 +252,11 @@ public class ConcurrencyFutureDemo {
 }
 ```
 
-This way, we can handle in asynchronous logic or function in java using `ExecutorService` class, and the `Future` class which monitors the asynchronous running initiated with the `ExecutorService` class. 
+This way, we can handle in asynchronous logic or function in java using `ExecutorService` class, and the `Future` class which monitors the asynchronous running initiated with the `ExecutorService` class.
 
 ## Synchronization in Java
 
-When we execute threads, they do not run in sequence. This is not a problem in the thread example above, 
+When we execute threads, they do not run in sequence. This is not a problem in the thread example above,
 but it becomes a problem when for instance two threads are trying to access an object at the same time. This is where java in providing _Synchronization_ which is built around an internal entity known as _intrinsic lock or monitor lock_.
 
 ```java
@@ -320,17 +320,17 @@ public class Thread2 implements Runnable {
 }
 ```
 
-Usage: 
+Usage:
 ```java
 public class Main {
   public static void main(String[] args) throws Exception {
     // Concurrency Threads Synchronization
-      SynchronizedMathUtils obj = new SynchronizedMathUtils();
+    SynchronizedMathUtils obj = new SynchronizedMathUtils();
 
-      Thread1 thread1 = new Thread1(obj);
-      Thread thread2 = new Thread(new Thread2(obj));
-      thread1.start();
-      thread2.start();
+    Thread1 thread1 = new Thread1(obj);
+    Thread thread2 = new Thread(new Thread2(obj));
+    thread1.start();
+    thread2.start();
   }
 }
 ```
@@ -345,11 +345,11 @@ If the conversion goes in reverse, then it is called _Unboxing_.
 ```java
 public static void main(String[] args) {
   int i = 48;
-  
+
   // Autobox
   Integer iObj = Integer.valueOf(i);
   System.out.println(iObj);
-  
+
   // auto-unbox
   int i1 = iObj.intValue();
   System.out.println(i1);
@@ -425,10 +425,10 @@ public class CharacterStream {
 
 ## JDBC (Java Database Connectivity)
 The JDBC API is a very helper class in java that helps with connecting to different databases with technically the `DriverManager` and `Connection` syntax.
-This bridges the gap of having to worry about how every database allows for its connection. 
+This bridges the gap of having to worry about how every database allows for its connection.
 
 So you simply have to:
-- choose your database (MySQL, PostgreSQL, Oracle, etc) 
+- choose your database (MySQL, PostgreSQL, Oracle, etc)
 - download the db installer
 - set it up and get the connection url
 - download the JDBC driver for that database. This will download a `.jar` file which you can add to your java program's Classpath.
@@ -610,35 +610,35 @@ Java does provide support for image handling using two classes:
 - `java.awt.Image` class and
 - `java.awt.image.BufferedImage` class which extends the Image class
 
-You can easily read provided image file and also write that exact image to a destination file in java as seen in the below example: 
+You can easily read provided image file and also write that exact image to a destination file in java as seen in the below example:
 ```java
   private static BufferedImage readFromFile(int width, int height, BufferedImage image) {
-    try {
-      File sampleImageFile = new File("/sampleImage.jpg");
+  try {
+    File sampleImageFile = new File("/sampleImage.jpg");
 
-      image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-      // Reading input file
-      image = ImageIO.read(sampleImageFile);
+    // Reading input file
+    image = ImageIO.read(sampleImageFile);
 
-      System.out.println("Reading complete." + image);
-    } catch (IOException e) {
-      System.err.println("Error" + e.getMessage());;
-    }
-    return image;
+    System.out.println("Reading complete." + image);
+  } catch (IOException e) {
+    System.err.println("Error" + e.getMessage());;
   }
-  
-  private static void writeToFile(BufferedImage image) {
-    try {
-      File output = new File("/sampleImageOut.jpg");
+  return image;
+}
 
-      ImageIO.write(image, "jpg", output );
+private static void writeToFile(BufferedImage image) {
+  try {
+    File output = new File("/sampleImageOut.jpg");
 
-      System.out.println("Writing complete.");
-    } catch (IOException e) {
-      System.err.println("Error" + e.getMessage());
-    }
+    ImageIO.write(image, "jpg", output );
+
+    System.out.println("Writing complete.");
+  } catch (IOException e) {
+    System.err.println("Error" + e.getMessage());
   }
+}
 }
 ```
 
@@ -648,7 +648,7 @@ The basic idea behind Regex is a way to describe a set of strings based on commo
 
 Java provides the `java.util.regex` package which helps to implement regular expressions.
 
-The `java.util.regex` package primarily consists of three classes: 
+The `java.util.regex` package primarily consists of three classes:
 - `Pattern`: A Pattern object is a compiled representation of a regular expression.
 - `Matcher`: A Matcher object is the engine that interprets the pattern and performs match operations against an input string.
 - `PatternSyntaxException`: A PatternSyntaxException object is an unchecked exception that indicates a syntax error in a regular expression pattern.
@@ -671,7 +671,7 @@ public class Regex {
 ```
 
 ## NIO in java
-`NIO` stands for _New Input/Out_, which is an API that defines `Buffers` (containers for data), and other structures such as `Charsets`, `Channels` and `Selectors` channels. 
+`NIO` stands for _New Input/Out_, which is an API that defines `Buffers` (containers for data), and other structures such as `Charsets`, `Channels` and `Selectors` channels.
 
 The `NIO` package is a new improved version of the old `IO` package which allows reading or writing of files without blocking...this aid multithreading and non-blocking in threads more efficiently.
 
@@ -696,6 +696,63 @@ public class NIODemo {
     writeBuffer.flip();
     writeChannel.write(writeBuffer);
     System.out.println(message);
+  }
+}
+```
+
+## JavaBeans Spec
+JavaBeans is just a standard/specification provided by java to be followed when you are implementing production or enterprise grade applications.
+
+"JavaBeans™ makes it easy to reuse software components. Developers can use software components written by others without having to understand their inner workings."
+
+The three most important feature of a Java Bean are the set of _properties_ it exposes, the set of _methods_ it allows other components to call, and the set of _events_ it fires.
+- Properties
+- Methods
+- Events
+
+JavaBeans classes are Serialized.
+
+```java
+import java.io.Serializable;
+
+class Student implements Serializable {
+  private static final long serialVersionUID = 1L;
+  
+  private String name;
+  private  int age;
+  private String address;
+  
+  // optional constructor as java automatically create a constructor in a class
+//  public Student (String name, int age, String address) {
+//    this.name = name;
+//    this.age = age;
+//    this.address = address;
+//  }
+  
+  // getter methods
+  public void getName() {
+    return this.name;
+  }
+  
+  public void getAge() {
+    return this.age;
+  }
+  
+  public void getAddress() {
+    return this.address;
+  }
+  
+  // setter methods
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  public void setAge(int age) {
+    this.age = age;
+  }
+  
+  public void setAddress(String address) {
+    this.address = address;
   }
 }
 ```
