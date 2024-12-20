@@ -2,6 +2,8 @@
 
 Here I document what I learnt from online resources to better understand java.
 
+You can also check out [learn-spring](https://github.com/Stan015/learn-spring) repo where I practiced Java Sprint Framework.
+
 ## The anatomy of java
 
 - The smallest building block of java is Function.
